@@ -1,7 +1,7 @@
-# 6809sim — Self-contained 6809 system simulator
+# 6809sbc — A 6809 software-based computer
 
 ## Overview
-A tiny, self-contained flexible 6809 system simulator in C/C++. It lets you load a ROM bios image or a 6809 program run it. A basic ACIA is as well simulated and bridged to stdout/stdin providing basic terminal emulation.
+A tiny, self-contained and flexible 6809 system simulator written in C/C++. It emulates a small 6809-based system and lets you load a ROM images or a program to run on it. A basic ACIA is bridged to stdout/stdin providing terminal emulation.
 
 ### Memory Map
 - 32K RAM: 0x0000 – 0x7FFF
@@ -13,7 +13,7 @@ A tiny, self-contained flexible 6809 system simulator in C/C++. It lets you load
 - ACIA: on write, print the ASCII character to stdout and flush
 - ACIA: on kbhit, transmit character code from keyboard
 - STATUS 0xA001: return 0x01 and 0x02 (always ready)
-- ROM region is read-only; writes are ignored
+- ROM region is read-only - writes are ignored
 - Reset vector area (0xFFFE/0xFFFF)
 
 ### Loading modes
