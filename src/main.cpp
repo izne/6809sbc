@@ -94,6 +94,7 @@ static void usage(const char* progname)
 {
 	fprintf(stderr, "Usage:\n  %s --verbose \n--disassemble \n--load <filename[.hex|.s19|.s09|.srec]> \n--load-addr 0xXXXX \n--rom <filename.bin>\n", progname);
 }
+
 static bool file_to_buffer(const std::string& path, std::vector<uint8_t>& out)
 {
 	std::ifstream f(path, std::ios::binary | std::ios::ate);
@@ -107,6 +108,7 @@ static bool file_to_buffer(const std::string& path, std::vector<uint8_t>& out)
 
 	return true;
 }
+
 static bool load_bin_to_rom(const std::string& path)
 {
 	std::fill(ROM, ROM + sizeof(ROM), 0xFF);
@@ -122,6 +124,7 @@ static bool load_bin_to_rom(const std::string& path)
 
 	return true;
 }
+
 static bool load_srec_to_ram(const std::string& path, uint16_t &first_addr)
 {
 	first_addr = 0;
@@ -180,6 +183,7 @@ static bool load_srec_to_ram(const std::string& path, uint16_t &first_addr)
 	f.close();
 	return got;
 }
+
 static bool load_hex_to_ram(const std::string& path, uint16_t &first_addr)
 {
 	first_addr = 0;
@@ -222,11 +226,11 @@ static bool load_hex_to_ram(const std::string& path, uint16_t &first_addr)
 	f.close();
 	return got_data;
 }
+
 static void dump_memory(uint16_t start, uint16_t end)
 {
 	for (uint16_t a = start; a <= end; ++a) printf("%04x: %02x\n", a, RAM[a]);
 }
-
 
 int main(int argc, char** argv)
 {
@@ -240,7 +244,7 @@ int main(int argc, char** argv)
 	uint32_t cycles = 0;
 	uint16_t pc_start = 0;
 	
-	printf("\n6809sbc v%i.%i, built %s, %s - 2026 Dimitar Angelov\n", v.major, v.minor, v.build_time, v.build_date);
+	printf("\n6809sbc v%i.%i, Dimitar Angelov 2026, built %s %s\n", v.major, v.minor, v.build_time, v.build_date);
 
 	for (int i = 1; i < argc; ++i)
 	{
